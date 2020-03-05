@@ -72,24 +72,33 @@ namespace StreamStage {
 
         private void btnP1plus_Click(object sender, RoutedEventArgs e) {
             standingP1++;
+            if (standingP1 > 9)
+                standingP1 = 9;
             lblStanding.Content = standingP1 + ":" + standingP2;
             safeStandingData();
         }
 
         private void btnP1minus_Click(object sender, RoutedEventArgs e) {
             standingP1--;
+            if (standingP1 < 0)
+                standingP1 = 0;
             lblStanding.Content = standingP1 + ":" + standingP2;
             safeStandingData();
         }
 
         private void btnP2plus_Click(object sender, RoutedEventArgs e) {
             standingP2++;
+            if (standingP2 > 9)
+                standingP2 = 9;
             lblStanding.Content = standingP1 + ":" + standingP2;
             safeStandingData();
         }
 
         private void btnP2minus_Click(object sender, RoutedEventArgs e) {
             standingP2--;
+            if (standingP2 < 0)
+                standingP2 = 0;
+
             lblStanding.Content = standingP1 + ":" + standingP2;
             safeStandingData();
         }
@@ -107,13 +116,13 @@ namespace StreamStage {
             try {
                 standingP1 = Int32.Parse(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "standingP1.txt"));
             } catch (FileNotFoundException e) {
-                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "standingP1.txt", "");
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "standingP1.txt", "0");
             }
 
             try {
                 standingP2 = Int32.Parse(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "standingP2.txt"));
             } catch (FileNotFoundException e) {
-                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "standingP2.txt", "");
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "standingP2.txt", "0");
             }
 
             try {

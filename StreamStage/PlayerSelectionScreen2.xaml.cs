@@ -59,6 +59,7 @@ namespace StreamStage
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", tfP2gamertag.Text);
 
             playerList.Add(tfP2gamertag.Text);
+            playerList.Sort();
             File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "player.txt", playerList.ToArray());
 
             this.Close();
@@ -70,6 +71,7 @@ namespace StreamStage
                 File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", tfP2gamertag.Text);
 
                 playerList.Add(tfP2gamertag.Text);
+                playerList.Sort();
                 File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "player.txt", playerList.ToArray());
 
                 this.Close();

@@ -46,6 +46,8 @@ namespace StreamStage {
                 playerList.Add(p);
             }
 
+            
+
         }
 
         private void sp_Loaded(object sender, RoutedEventArgs e) {
@@ -63,6 +65,7 @@ namespace StreamStage {
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player1.txt", tfP1gamertag.Text);
 
             playerList.Add(tfP1gamertag.Text);
+            playerList.Sort();
             File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "player.txt", playerList.ToArray());
 
             this.Close();
@@ -74,6 +77,7 @@ namespace StreamStage {
                 File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player1.txt", tfP1gamertag.Text);
 
                 playerList.Add(tfP1gamertag.Text);
+                playerList.Sort();
                 File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "player.txt", playerList.ToArray());
 
                 this.Close();
