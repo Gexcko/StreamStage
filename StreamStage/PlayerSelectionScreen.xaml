@@ -1,0 +1,19 @@
+﻿<Window x:Class="StreamStage.PlayerSelectionScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StreamStage"
+        mc:Ignorable="d"
+        Title="PlayerSelectionScreen" Height="500" Width="1100" ResizeMode="NoResize">
+    <Grid>
+        <ScrollViewer HorizontalAlignment="Left" Height="395" VerticalAlignment="Top" Width="1084">
+            <WrapPanel x:Name="sp"/>
+        </ScrollViewer>
+        <StackPanel HorizontalAlignment="Left" Height="59" Margin="0,400,0,0" VerticalAlignment="Top" Width="1092" Orientation="Horizontal">
+            <Label Content="New Player: " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
+            <TextBox x:Name="tfP1gamertag" TextWrapping="Wrap" Text="Gamertag" Width="202" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="0,14" KeyDown="tfP1gamertag_KeyDown"/>
+            <Button x:Name="btnP1add" Content="Add" Width="86" FontSize="22" BorderThickness="1" Margin="10,0,0,0" Click="btnP1add_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
