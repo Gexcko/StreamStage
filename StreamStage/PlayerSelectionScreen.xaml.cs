@@ -70,7 +70,7 @@ namespace StreamStage {
 
         private void tfP1gamertag_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
-                ((MainWindow)Application.Current.MainWindow).btnPS2.Content = tfP1gamertag.Text;
+                ((MainWindow)Application.Current.MainWindow).btnPS1.Content = tfP1gamertag.Text;
                 File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player1.txt", tfP1gamertag.Text);
 
                 playerList.Add(tfP1gamertag.Text);
