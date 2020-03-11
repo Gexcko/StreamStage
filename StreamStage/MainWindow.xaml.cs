@@ -21,6 +21,8 @@ namespace StreamStage {
     public partial class MainWindow : Window {
         int standingP1 = 0;
         int standingP2 = 0;
+        string selectedStage = "";
+        int preSelectedStageIndex = -1;
 
         public MainWindow() {
             InitializeComponent();
@@ -55,7 +57,11 @@ namespace StreamStage {
                 cbxStage.Items.Add(s);
             }
 
-
+            for(int i = 0; i<stage.Length; i++) {
+                if (stage[i].Equals(selectedStage)) {
+                    cbxStage.SelectedIndex = i;
+                }
+            }
 
             lblStanding.Content = standingP1 + ":" + standingP2;
         }
@@ -109,7 +115,13 @@ namespace StreamStage {
         }
 
         private void cbxStage_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "stageSelected.txt", cbxStage.SelectedItem + "");
+            if (!cbxStage.SelectedItem.Equals("--------------------")) {
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "stageSelected.txt", cbxStage.SelectedItem + "");
+                preSelectedStageIndex = cbxStage.SelectedIndex;
+            } else {
+                cbxStage.SelectedIndex = preSelectedStageIndex;
+            }
+            
         }
 
         private void init() {
@@ -137,7 +149,11 @@ namespace StreamStage {
                 File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", "");
             }
 
-
+            try {
+                selectedStage = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "stageSelected.txt");
+            } catch (FileNotFoundException e) {
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "stageSelected.txt", "");
+            }
 
         }
     }
