@@ -13,8 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace StreamStage
-{
+namespace StreamStage {
     /// <summary>
     /// Interaction logic for PlayerSelectionScreen2.xaml
     /// </summary>
@@ -36,7 +35,7 @@ namespace StreamStage
             foreach (string p in player) {
                 Button b = new Button();
                 b.Content = p;
-                b.Name = "btn" + p.Replace(" ", "");
+                b.Name = "btn" + p.Replace(" ","").Replace("[", "_").Replace("]", "_").Replace("(", "-").Replace(")", "-");
                 sp.Children.Add(b);
 
                 b.Height = 100;
@@ -51,11 +50,13 @@ namespace StreamStage
         private void btnPlayer_Click(object sender, RoutedEventArgs e) {
             ((MainWindow)Application.Current.MainWindow).btnPS2.Content = sender.ToString().Substring(32);
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", sender.ToString().Substring(32));
+            ((MainWindow)Application.Current.MainWindow).btnTgl2.IsChecked = false;
             this.Close();
         }
 
         private void btnP2add_Click(object sender, RoutedEventArgs e) {
             ((MainWindow)Application.Current.MainWindow).btnPS2.Content = tfP2gamertag.Text;
+            ((MainWindow)Application.Current.MainWindow).btnTgl2.IsChecked = false;
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", tfP2gamertag.Text);
 
             playerList.Add(tfP2gamertag.Text);
@@ -67,14 +68,15 @@ namespace StreamStage
 
         private void tfP2gamertag_KeyDown(object sender, KeyEventArgs e) {
             if(e.Key == Key.Enter) {
-                ((MainWindow)Application.Current.MainWindow).btnPS2.Content = tfP2gamertag.Text;
+                btnP2add_Click(sender, e);
+                /*((MainWindow)Application.Current.MainWindow).btnPS2.Content = tfP2gamertag.Text;
                 File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", tfP2gamertag.Text);
 
                 playerList.Add(tfP2gamertag.Text);
                 playerList.Sort();
                 File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "player.txt", playerList.ToArray());
 
-                this.Close();
+                this.Close();*/
             }
         }
     }

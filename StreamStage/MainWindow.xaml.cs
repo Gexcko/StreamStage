@@ -21,6 +21,9 @@ namespace StreamStage {
     public partial class MainWindow : Window {
         int standingP1 = 0;
         int standingP2 = 0;
+        string player1 = "";
+        string player2 = "";
+
         string selectedStage = "";
         int preSelectedStageIndex = -1;
 
@@ -36,15 +39,20 @@ namespace StreamStage {
                 "WB Round 2",
                 "WB Round 3",
                 "WB Round 4",
+                "WB Quarter-Final",
+                "WB Semi-Final",
                 "WB Final",
                 "--------------------",
                 "LB Round 1",
                 "LB Round 2",
                 "LB Round 3",
                 "LB Round 4",
+                "LB Quarter-Final",
+                "LB Semi-Final",
                 "LB Final",
                 "--------------------",
-                "Grand Final"
+                "Grand Final",
+                "Grand Final Reset"
             };
             try {
                 stage = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "stage.txt");
@@ -138,13 +146,21 @@ namespace StreamStage {
             }
 
             try {
-                btnPS1.Content = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "player1.txt");
+                player1 = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "player1.txt");
+                btnPS1.Content = player1;
+                if(player1.EndsWith(" [L]")) {
+                    btnTgl1.IsChecked = true;
+                }
             } catch (FileNotFoundException e) {
-                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player.txt", "");
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player1.txt", "");
             }
 
             try {
-                btnPS2.Content = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt");
+                player2 = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt");
+                btnPS2.Content = player2;
+                if (player2.EndsWith(" [L]")) {
+                    btnTgl2.IsChecked = true;
+                }
             } catch (FileNotFoundException e) {
                 File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", "");
             }
@@ -155,6 +171,75 @@ namespace StreamStage {
                 File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "stageSelected.txt", "");
             }
 
+        }
+
+        private void btnSwap_Click(object sender, RoutedEventArgs e) {
+            if (!btnPS1.Content.Equals(player1)) {
+                player1 = btnPS1.Content.ToString();
+            }
+
+            if (!btnPS2.Content.Equals(player1)) {
+                player2 = btnPS2.Content.ToString();
+            }
+
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player1.txt", player2 + "");
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", player1 + "");
+            btnPS2.Content = player1;
+            btnPS1.Content = player2;
+
+            string temp = player1;
+            player1 = player2;
+            player2 = temp;
+
+            if (player1.EndsWith(" [L]")) {
+                btnTgl1.IsChecked = true;
+            } else {
+                btnTgl1.IsChecked = false;
+            }
+
+            if (player2.EndsWith(" [L]")) {
+                btnTgl2.IsChecked = true;
+            } else {
+                btnTgl2.IsChecked = false;
+            }
+
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "standingP1.txt", standingP2 + "");
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "standingP2.txt", standingP1 + "");
+            int temp2 = standingP1;
+            standingP1 = standingP2;
+            standingP2 = temp2;
+            lblStanding.Content = standingP1 + ":" + standingP2;
+        }
+
+        private void btnTgl1_Click(object sender, RoutedEventArgs e) {
+            if (!btnPS1.Content.Equals(player1)) {
+                player1 = btnPS1.Content.ToString();
+            }
+
+            if (!player1.EndsWith(" [L]") && btnTgl1.IsChecked==true) {
+                player1 = player1 + " [L]";
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player1.txt", player1 + "");
+            } else if(player1.EndsWith(" [L]") && btnTgl1.IsChecked == false) {
+                player1 = player1.Substring(0, player1.IndexOf("[")-1);
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player1.txt", player1 + "");
+            }
+            btnPS1.Content = player1;
+
+        }
+
+        private void btnTgl2_Click(object sender, RoutedEventArgs e) {
+            if (!btnPS2.Content.Equals(player1)) {
+                player2 = btnPS2.Content.ToString();
+            }
+
+            if (!player2.EndsWith(" [L]") && btnTgl2.IsChecked == true) {
+                player2 = player2 + " [L]";
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", player2 + "");
+            } else if (player2.EndsWith(" [L]") && btnTgl2.IsChecked == false) {
+                player2 = player2.Substring(0, player2.IndexOf("[") - 1);
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "player2.txt", player2 + "");
+            }
+            btnPS2.Content = player2;
         }
     }
 }

@@ -8,13 +8,16 @@
         Title="MainWindow" Height="846" Width="1504" MinHeight="846" MinWidth="1504">
     <Grid>
         <Button x:Name="btnPS1" Content="Select Player 1" Margin="10,10,0,0" Click="btnPS1_Click" FontSize="36" Height="170" VerticalAlignment="Top" HorizontalAlignment="Left" Width="400"/>
-        <Button x:Name="btnPS2" Content="Select Player 2" Margin="0,10,14,0" Click="btnPS2_Click" FontSize="36" Height="170" VerticalAlignment="Top" HorizontalAlignment="Right" Width="400"/>
-        <Label x:Name="lblStanding" Content="0:0" Margin="430,199,434,10" HorizontalContentAlignment="Center" FontSize="350" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="632" Height="606"/>
+        <Button x:Name="btnPS2" Content="Select Player 2" Margin="0,10,10,0" Click="btnPS2_Click" FontSize="36" Height="170" VerticalAlignment="Top" HorizontalAlignment="Right" Width="400"/>
+        <Label x:Name="lblStanding" Content="0:0" Margin="430,364,434,10" HorizontalContentAlignment="Center" FontSize="350" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="632" Height="441"/>
         <Button x:Name="btnP1plus" Content="+" Margin="10,199,0,321" FontSize="160" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnP1plus_Click" HorizontalAlignment="Left" Width="400"/>
         <Button x:Name="btnP1minus" Content="-" Margin="10,0,0,10" FontSize="160" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnP1minus_Click" VerticalAlignment="Bottom" Height="295" HorizontalAlignment="Left" Width="400" Padding="1" UseLayoutRounding="False"/>
-        <Button x:Name="btnP2plus" Content="+" Margin="0,199,14,321" FontSize="160" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnP2plus_Click" HorizontalAlignment="Right" Width="400"/>
-        <Button x:Name="btnP2minus" Content="-" Margin="0,0,14,10" FontSize="160" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnP2minus_Click" HorizontalAlignment="Right" Width="400" Height="295" VerticalAlignment="Bottom"/>
-        <ComboBox x:Name="cbxStage" Height="170" Margin="430,10,434,0" VerticalAlignment="Top" FontSize="42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxDropDownHeight="500" SelectionChanged="cbxStage_SelectionChanged"/>
+        <Button x:Name="btnP2plus" Content="+" Margin="0,199,10,321" FontSize="160" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnP2plus_Click" HorizontalAlignment="Right" Width="400"/>
+        <Button x:Name="btnP2minus" Content="-" Margin="0,0,10,10" FontSize="160" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnP2minus_Click" HorizontalAlignment="Right" Width="400" Height="295" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="cbxStage" Height="170" Margin="430,199,430,0" VerticalAlignment="Top" FontSize="42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxDropDownHeight="500" SelectionChanged="cbxStage_SelectionChanged"/>
+        <ToggleButton x:Name="btnTgl1" Content="[L]" HorizontalAlignment="Left" FontSize="36" Height="170" Margin="430,10,0,0" VerticalAlignment="Top" Width="170" Click="btnTgl1_Click"/>
+        <ToggleButton x:Name="btnTgl2" Content="[L]" HorizontalAlignment="Right" FontSize="36" Height="170" Margin="0,10,430,0" VerticalAlignment="Top" Width="170" Click="btnTgl2_Click"/>
+        <Button x:Name="btnSwap" Content="SWAP" FontSize="36" Height="170" Margin="620,10,620,0" VerticalAlignment="Top" Click="btnSwap_Click"/>
 
     </Grid>
 </Window>
